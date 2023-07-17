@@ -1,4 +1,4 @@
-package com.zapp.app.pretty_logger
+package com.app.app.pretty_logger
 
 
 import okhttp3.Request
