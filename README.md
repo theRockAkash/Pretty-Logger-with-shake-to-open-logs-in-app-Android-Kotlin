@@ -1,0 +1,1 @@
+# Pretty-Logger-with-shake-to-open-logs-in-app-Android-Kotlin
