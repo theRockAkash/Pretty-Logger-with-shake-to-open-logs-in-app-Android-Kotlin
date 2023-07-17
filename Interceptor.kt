@@ -1,6 +1,6 @@
-package com.zapp.app.retrofit
+package com.app.app.retrofit
 
-import com.zapp.app.utils.PreferenceHelper
+import com.app.app.utils.PreferenceHelper
 import okhttp3.Interceptor
 import okhttp3.Protocol
 import okhttp3.Response
@@ -18,23 +18,13 @@ class Interceptor @Inject constructor(private val preferenceHelper: PreferenceHe
     @Throws(Exception::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         try {
-
-            if (preferenceHelper.getString(PreferenceHelper.TOKEN).isNullOrEmpty()) {
-                val request = chain.request().newBuilder()
+                 val request = chain.request().newBuilder()
                     .addHeader("Content-Type", "application/json")
                     .addHeader("Accept", "application/json")
-                return chain.proceed(request.build())
-            } else {
-                val request = chain.request().newBuilder()
-                    .addHeader(
-                        "Authorization",
-                        "Bearer ${preferenceHelper.getString(PreferenceHelper.TOKEN)}"
-                    )
-                    .addHeader("Content-Type", "application/json")
-                    .addHeader("Accept", "application/json")
-                return chain.proceed(request.build())
+            if (!preferenceHelper.getString(PreferenceHelper.TOKEN).isNullOrEmpty()) {
+                   request .addHeader("Authorization","Bearer ${preferenceHelper.getString(PreferenceHelper.TOKEN)}")
             }
-
+         return chain.proceed(request.build())
         } catch (e: Exception) {
             e.printStackTrace()
             var msg = ""
