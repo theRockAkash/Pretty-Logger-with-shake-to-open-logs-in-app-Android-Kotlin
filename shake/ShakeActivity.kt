@@ -1,11 +1,9 @@
-package com.zapp.app.shake
+package com.app.app.shake
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.zapp.app.databinding.ActivityShakeBinding
-import com.zapp.app.utils.PreferenceHelper
-import dagger.hilt.android.AndroidEntryPoint
+import com.app.app.databinding.ActivityShakeBinding
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
@@ -14,12 +12,8 @@ import java.io.PrintWriter
 import javax.inject.Inject
 
 
-@AndroidEntryPoint
 class ShakeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityShakeBinding
-
-    @Inject
-    lateinit var preferenceHelper: PreferenceHelper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityShakeBinding.inflate(layoutInflater)
