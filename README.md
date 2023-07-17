@@ -1,4 +1,5 @@
 # Pretty-Logger-with-shake-to-open-logs-in-app-Android-Kotlin
+`Note: add dagger-hilt in your app`
 
 #add your app's package name in Printet.kt file line:24
 ```
