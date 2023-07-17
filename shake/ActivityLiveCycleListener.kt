@@ -1,4 +1,4 @@
-package com.zapp.app.shake
+package com.app.app.shake
 
 import android.app.Activity
 import android.app.Application
