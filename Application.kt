@@ -1,34 +1,23 @@
-package com.zapp.app.application
+package com.app.app.application
 
-import android.annotation.SuppressLint
+
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import android.provider.Settings
 import android.util.Log
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.messaging.FirebaseMessaging
-import com.zapp.app.fcm.FCMRepo
-import com.zapp.app.shake.ActivityLiveCycleListener
-import com.zapp.app.shake.AppStateListener
-import com.zapp.app.shake.ShakeActivity
-import com.zapp.app.utils.Constants.TAG
-import dagger.hilt.android.HiltAndroidApp
+import com.app.app.shake.ActivityLiveCycleListener
+import com.app.app.shake.AppStateListener
+import com.app.app.shake.ShakeActivity
 import java.io.File
 import java.io.IOException
 import java.io.PrintWriter
 import javax.inject.Inject
 import kotlin.math.sqrt
 
-
-@HiltAndroidApp
 class Application : android.app.Application() {
-
-    @Inject
-    lateinit var fcmRepo: FCMRepo
 
     //For shake event *******************
     private var sensorManager: SensorManager? = null
@@ -40,24 +29,8 @@ class Application : android.app.Application() {
     override fun onCreate() {
         super.onCreate()
 
-        @SuppressLint("HardwareIds")
-        val androidId =
-            Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID) ?: "androidID"
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                Log.w(TAG, "Fetching FCM registration token failed", task.exception)
-                return@OnCompleteListener
-            }
-            // Get new FCM registration token
-            val token = task.result
-
-            fcmRepo.sendFcmTokenToServer(token, androidId)
-
-        })
-
-
         //For shake event *******************
-        if (com.zapp.app.BuildConfig.DEBUG) {
+        if (com.app.app.BuildConfig.DEBUG) {
             clearLogs()
             sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
             registerActivityLifecycleCallbacks(ActivityLiveCycleListener(object : AppStateListener {
