@@ -1,4 +1,4 @@
-package com.zapp.app.pretty_logger
+package com.app.app.pretty_logger
 
 
 import android.util.Log
@@ -21,7 +21,7 @@ import java.nio.charset.StandardCharsets
 class Printer private constructor() {
 
     companion object {
-        val logFile = File("/data/user/0/com.zapp.app/cache/", "log.file")
+        val logFile = File("/data/user/0/{add your app package name}/cache/", "log.file")  //add your app package name 
 
         private const val JSON_INDENT = 3
         private val LINE_SEPARATOR = System.getProperty("line.separator")
