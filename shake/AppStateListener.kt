@@ -1,4 +1,4 @@
-package com.zapp.app.shake
+package com.app.app.shake
 
 interface AppStateListener {
     fun onAppForeGround()
