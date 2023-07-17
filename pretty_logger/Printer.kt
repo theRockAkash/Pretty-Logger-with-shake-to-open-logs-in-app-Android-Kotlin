@@ -316,9 +316,7 @@ class Printer private constructor() {
     }
 }
 
-/**
- * @see 'https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor/src/main/java/okhttp3/logging/utf8.kt'
- * */
+
 internal fun Buffer.isProbablyUtf8(): Boolean {
     try {
         val prefix = Buffer()
